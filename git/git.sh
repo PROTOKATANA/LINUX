@@ -24,7 +24,7 @@ for iter in "$@" ; do
 
 		if ! grep -F "if [ -z \"\$SSH_AGENT_PID\" ]" $HOME/.profile ; then
 
-			echo 'if [ -z "$SSH_AGENT_PID" ] ; then eval "$(ssh-agent -s)" ; ssh-add "$HOME/.ssh/proto" ; fi' >> $HOME/.profile
+			echo 'if [ -z "$SSH_AGENT_PID" ] ; then eval "$(ssh-agent -s)" && ssh-add "$HOME/.ssh/proto" ; fi' >> $HOME/.profile
 
 		fi
 
@@ -39,5 +39,3 @@ for iter in "$@" ; do
 	fi
 
 done
-
-# ejecutar : ssh-add ~/.ssh/proto

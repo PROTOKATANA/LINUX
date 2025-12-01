@@ -4,11 +4,9 @@ if [ "$EUID" -ne 0 ] ; then echo "EJECUTAR SCRIPT COMO USUARIO ROOT" ; exit 1 ; 
 
 nvidia=(
 
-	nvidia-computeG06
-
-	nvidia-glG06
-
 	nvidia-video-G06
+
+	nvidia-compute-utils-G06
 
 	kernel-firmware-nvidia
 
@@ -16,7 +14,7 @@ nvidia=(
 
 )
 
-usermod -a -G render,video KATANA
+usermod -a -G render,video katana
 
 zypper install openSUSE-repos-Slowroll-NVIDIA
 
