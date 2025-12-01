@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 if [ "$EUID" -eq 0 ] ; then echo "EJECUTAR SCRIPT COMO USUARIO NOROOT" ; exit 1 ; fi
 
@@ -6,9 +6,7 @@ for iter in "$@" ; do
 
 	if [ "$iter" == "--generador" ] ; then
 
-		# CIFRADO DE DISCO COMPLETO :)
-
-		ssh-keygen -t rsa -b 4096 -C "PROTOKATANA@proton.me" -f $HOME/.ssh/proto # NOKEY
+		ssh-keygen -t rsa -b 4096 -C "PROTOKATANA@proton.me" -f $HOME/.ssh/proto
 
 		if ! grep -F "ssh-add \$HOME/.ssh/proto" $HOME/.profile ; then
 
@@ -41,3 +39,5 @@ for iter in "$@" ; do
 	fi
 
 done
+
+# ejecutar : ssh-add ~/.ssh/proto
