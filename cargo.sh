@@ -2,6 +2,26 @@
 
 if [ "$EUID" -eq 0 ] ; then echo "EJECUTAR SCRIPT COMO USUARIO NOROOT" exit 1 ; fi
 
-sudo zypper install --auto-agree-with-licenses -y rustup
+dependencias=(
+
+	protobuf-devel
+
+	protobuf-devel
+
+	rustup
+
+)
+
+zypper refresh
+
+instalacion() {
+
+	if zypper search -i "$1" &>> /dev/null ; then echo -e "existente : [$1]"
+
+	else zypper install --auto-agree-with-licenses -y "$1" 2>&1 ; fi
+
+}
+
+for iter in "${dependencias[@]}" ; do instalacion "$iter" ; done
 
 rustup default stable

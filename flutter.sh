@@ -4,9 +4,51 @@ if [ "$EUID" -eq 0 ] ; then echo "EJECUTAR SCRIPT COMO USUARIO NOROOT" ; exit 1 
 
 carpeta='torio'
 
+dependencias=(
+
+	clang
+
+	cmake
+
+	ninja
+
+	pkg-config
+
+	gtk3-devel
+
+	gcc-c++
+
+	libstdc++-devel
+
+	vulkan-validationlayers
+
+	vulkan-tools
+
+	libvulkan1
+
+)
+
+instalacion() {
+
+	if zypper search -i "$1" &>> /dev/null ; then echo -e "existente : [$1]"
+
+	else sudo zypper install --auto-agree-with-licenses -y "$1" 2>&1 ; fi
+
+}
+
 for iter in "$@" ; do
 
-	if [ "$iter" == "--instalar" ] ; then
+	if [ "$iter" == "--tool" ] ; then
+
+		zypper refresh
+
+		zypper update -y
+
+		for iter in "${dependencias[@]}" ; do instalacion "$iter" ; done
+
+	fi
+
+	if [ "$iter" == "--tar" ] ; then
 
 		mkdir -p "$HOME/$carpeta"
 
@@ -14,7 +56,7 @@ for iter in "$@" ; do
 
 	fi
 
-	if [ "$iter" == "--exportar" ] ; then
+	if [ "$iter" == "--entorno" ] ; then
 
 		if ! grep -F "export PATH=\"\$HOME/$carpeta/flutter/bin:\$PATH\"" $HOME/.bashrc ; then
 

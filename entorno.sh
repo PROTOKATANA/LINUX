@@ -42,6 +42,8 @@ wayland=(
 
 	hypridle
 
+	hyprland-qtutils
+
 )
 
 general=(

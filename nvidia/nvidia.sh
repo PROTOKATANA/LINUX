@@ -12,6 +12,16 @@ nvidia=(
 
 	kernel-default-devel
 
+	nvidia-gfxG06-kmp-default
+
+	nvidia-openG06
+
+    nvidia-glG06
+
+    nvidia-utilsG06
+
+	nvidia-computeG06
+
 )
 
 usermod -a -G render,video katana
@@ -31,3 +41,11 @@ instalacion() {
 }
 
 for iter in "${nvidia[@]}" ; do instalacion "$iter" ; done
+
+# nvidia-driver-G06-kmp-default
+
+# uname -r
+
+# rpm -qa | grep -E "nvidia|kernel-default"
+
+# lsmod | grep -E "nouveau|nvidia"
